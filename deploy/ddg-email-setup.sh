@@ -4,6 +4,7 @@
 function prepare_app_build() {
     local verbose="$1"
 
+    wget -q https://raw.githubusercontent.com/csolallo/ddg-email/refs/heads/main/duckduckgo-token.txt
     create_driver_script "$verbose"
 }
 
@@ -14,7 +15,7 @@ function create_driver_script() {
     sc=$(cat <<EOF
 #!/data/data/com.termux/files/usr/bin/bash
 
-token=$(cat ./duckduckgo-token.txt)
+token=CAT_HERE
 
 curl -sS 'https://quack.duckduckgo.com/api/email/addresses' \
    -X 'POST' \
@@ -41,7 +42,8 @@ function move_app_to_destination() {
     local working="$1"
     local dest="$2"
 
-    mkdir -p $dest/ddg-email && cp -a $working/. $dest/ddg-email
+    mkdir -p $dest/ddg-email 
+    cp -a $working/duckduckgo-*.* $dest/ddg-email/
 }
 
 export -f prepare_app_build
