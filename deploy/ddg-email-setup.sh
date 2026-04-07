@@ -43,6 +43,7 @@ function move_app_to_destination() {
     local working="$1"
     local dest="$2"
 
+    mkdir -p $dest
     cp -a $working/duckduckgo-*.* $dest/
 }
 
