@@ -34,3 +34,15 @@ EOF
     echo "$sc" > duckduckgo-email.sh
     chmod +x duckduckgo-email.sh
 }
+
+# $1 : working folder
+# $2 : destination folder
+function move_app_to_destination() {
+    local working="$1"
+    local dest="$2"
+
+    mkdir -p $dest/ddg-email && cp -a $working/. $dest/ddg-email
+}
+
+export -f prepare_app_build
+export -f move_app_to_destination
