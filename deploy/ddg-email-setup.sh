@@ -33,6 +33,7 @@ EOF
     fi
 
     echo "$sc" > duckduckgo-email.sh
+    sed -i 's/CAT_HERE/\$(cat \.\/duckduckgo-token\.txt)/g' ./duckduckgo-email.sh
     chmod +x duckduckgo-email.sh
 }
 
